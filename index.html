@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>톨리스트 - 당신의 하루를 완성하는 가장 똑똑한 방법</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #1d1d1f;
+            --gray-dark: #424245;
+            --gray: #6e6e73;
+            --gray-light: #86868b;
+            --gray-lighter: #d2d2d7;
+            --white: #f5f5f7;
+            --pure-white: #ffffff;
+            --blue: #0071e3;
+            --blue-hover: #0077ed;
+            --green: #30d158;
+            --purple: #bf5af2;
+            --orange: #ff9f0a;
+            --pink: #ff375f;
+            --section-bg: #fbfbfd;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--black);
+            background: var(--pure-white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 48px;
+            background: rgba(251, 251, 253, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-content {
+            max-width: 1024px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 22px;
+        }
+
+        .nav-logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--black);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo span {
+            color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 12px;
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .nav-cta {
+            background: var(--blue);
+            color: var(--pure-white) !important;
+            padding: 6px 14px;
+            border-radius: 980px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--blue-hover);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            background: linear-gradient(180deg, #fbfbfd 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 113, 227, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-eyebrow {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--blue);
+            letter-spacing: -0.2px;
+            margin-bottom: 16px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease forwards 0.2s;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 72px);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -3px;
+            color: var(--black);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease forwards 0.4s;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, #0071e3, #bf5af2, #ff375f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            font-weight: 400;
+            color: var(--gray);
+            line-height: 1.5;
+            max-width: 600px;
+            margin-bottom: 40px;
+            letter-spacing: -0.3px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease forwards 0.6s;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s ease forwards 0.8s;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            background: var(--blue);
+            color: var(--pure-white);
+            border: none;
+            border-radius: 980px;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: -0.2px;
+        }
+
+        .btn-primary:hover {
+            background: var(--blue-hover);
+            transform: scale(1.02);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            background: transparent;
+            color: var(--blue);
+            border: none;
+            border-radius: 980px;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: -0.2px;
+        }
+
+        .btn-secondary:hover {
+            text-decoration: underline;
+        }
+
+        .btn-secondary svg {
+            transition: transform 0.3s;
+        }
+
+        .btn-secondary:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Hero Phone Mockup */
+        .hero-phone {
+            margin-top: 60px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeUp 1s ease forwards 1s;
+        }
+
+        .phone-frame {
+            width: 280px;
+            height: 560px;
+            background: var(--black);
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow:
+                0 40px 80px rgba(0, 0, 0, 0.12),
+                0 0 0 0.5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: var(--pure-white);
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 28px;
+            background: var(--black);
+            border-radius: 0 0 18px 18px;
+            z-index: 10;
+        }
+
+        .phone-screen-content {
+            padding: 44px 20px 20px;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .screen-greeting {
+            font-size: 11px;
+            color: var(--gray-light);
+            margin-bottom: 4px;
+        }
+
+        .screen-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .screen-progress {
+            background: #f2f2f7;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 14px;
+        }
+
+        .screen-progress-label {
+            font-size: 11px;
+            color: var(--gray);
+            margin-bottom: 6px;
+        }
+
+        .screen-progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--gray-lighter);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .screen-progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--purple));
+            border-radius: 3px;
+            transition: width 1.5s ease;
+        }
+
+        .screen-progress-fill.animate {
+            width: 72%;
+        }
+
+        .screen-progress-percent {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--black);
+            margin-top: 4px;
+            letter-spacing: -0.5px;
+        }
+
+        .screen-tasks {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .screen-task {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: #f2f2f7;
+            border-radius: 10px;
+            font-size: 13px;
+            color: var(--black);
+            transition: all 0.3s;
+        }
+
+        .screen-task.done {
+            color: var(--gray-light);
+            text-decoration: line-through;
+        }
+
+        .task-check {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--gray-lighter);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .screen-task.done .task-check {
+            background: var(--blue);
+            border-color: var(--blue);
+        }
+
+        .task-check svg {
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .screen-task.done .task-check svg {
+            opacity: 1;
+        }
+
+        .task-tag {
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+
+        .tag-work { background: rgba(0, 113, 227, 0.1); color: var(--blue); }
+        .tag-health { background: rgba(48, 209, 88, 0.1); color: var(--green); }
+        .tag-self { background: rgba(191, 90, 242, 0.1); color: var(--purple); }
+
+        /* ===== SECTION COMMON ===== */
+        section {
+            padding: 120px 24px;
+        }
+
+        .section-center {
+            max-width: 980px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-eyebrow {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            color: var(--black);
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: clamp(16px, 2.5vw, 21px);
+            color: var(--gray);
+            line-height: 1.5;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            letter-spacing: -0.3px;
+        }
+
+        /* ===== PAIN POINT SECTION ===== */
+        .pain {
+            background: var(--black);
+            color: var(--pure-white);
+        }
+
+        .pain .section-title {
+            color: var(--pure-white);
+        }
+
+        .pain .section-subtitle {
+            color: var(--gray-light);
+        }
+
+        .pain-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .pain-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 36px 28px;
+            text-align: left;
+            transition: all 0.4s ease;
+        }
+
+        .pain-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .pain-icon {
+            font-size: 36px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .pain-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .pain-card p {
+            font-size: 15px;
+            color: var(--gray-light);
+            line-height: 1.6;
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features {
+            background: var(--section-bg);
+        }
+
+        .features .section-eyebrow {
+            color: var(--blue);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--pure-white);
+            border-radius: 24px;
+            padding: 44px 32px;
+            text-align: left;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+        }
+
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 22px;
+            font-size: 24px;
+        }
+
+        .icon-blue { background: rgba(0, 113, 227, 0.1); }
+        .icon-purple { background: rgba(191, 90, 242, 0.1); }
+        .icon-green { background: rgba(48, 209, 88, 0.1); }
+        .icon-orange { background: rgba(255, 159, 10, 0.1); }
+        .icon-pink { background: rgba(255, 55, 95, 0.1); }
+        .icon-teal { background: rgba(90, 200, 250, 0.1); }
+
+        .feature-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .how-it-works {
+            background: var(--pure-white);
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            max-width: 680px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            left: 28px;
+            top: 28px;
+            bottom: 28px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--blue), var(--purple), var(--pink));
+        }
+
+        .step {
+            display: flex;
+            gap: 28px;
+            align-items: flex-start;
+            padding: 28px 0;
+        }
+
+        .step-number {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--black);
+            color: var(--pure-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-content h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .step-content p {
+            font-size: 15px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* ===== SOCIAL PROOF ===== */
+        .social-proof {
+            background: linear-gradient(135deg, #1d1d1f 0%, #2c2c2e 100%);
+            color: var(--pure-white);
+        }
+
+        .social-proof .section-title {
+            color: var(--pure-white);
+        }
+
+        .social-proof .section-subtitle {
+            color: var(--gray-light);
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: clamp(40px, 7vw, 64px);
+            font-weight: 900;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #0071e3, #bf5af2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray-light);
+            margin-top: 8px;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: left;
+        }
+
+        .testimonial-stars {
+            color: #ff9f0a;
+            font-size: 14px;
+            margin-bottom: 14px;
+            letter-spacing: 2px;
+        }
+
+        .testimonial p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 16px;
+        }
+
+        .testimonial-author {
+            font-size: 13px;
+            color: var(--gray-light);
+        }
+
+        /* ===== PSYCHOLOGY SECTION ===== */
+        .psychology {
+            background: var(--section-bg);
+            text-align: center;
+        }
+
+        .psychology .section-eyebrow {
+            color: var(--purple);
+        }
+
+        .psych-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .psych-item {
+            padding: 20px;
+        }
+
+        .psych-number {
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--blue), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .psych-item h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .psych-item p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* ===== COMPARE SECTION ===== */
+        .compare {
+            background: var(--pure-white);
+        }
+
+        .compare-table {
+            max-width: 700px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .compare-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .compare-row:last-child {
+            border-bottom: none;
+        }
+
+        .compare-header {
+            background: var(--black);
+            color: var(--pure-white);
+        }
+
+        .compare-cell {
+            padding: 16px 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .compare-cell:first-child {
+            justify-content: flex-start;
+            font-weight: 500;
+        }
+
+        .compare-header .compare-cell {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .compare-header .compare-cell:last-child {
+            color: var(--blue);
+            background: rgba(0, 113, 227, 0.15);
+        }
+
+        .compare-row:not(.compare-header) .compare-cell:last-child {
+            background: rgba(0, 113, 227, 0.03);
+        }
+
+        .check { color: var(--green); font-weight: 700; font-size: 18px; }
+        .cross { color: var(--gray-lighter); font-size: 18px; }
+
+        /* ===== CTA SECTION ===== */
+        .cta {
+            background: linear-gradient(180deg, var(--pure-white) 0%, var(--section-bg) 100%);
+            text-align: center;
+            padding: 120px 24px 140px;
+        }
+
+        .cta .section-title {
+            margin-bottom: 20px;
+        }
+
+        .cta-subtitle {
+            font-size: clamp(16px, 2.5vw, 21px);
+            color: var(--gray);
+            line-height: 1.5;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 28px;
+            background: var(--black);
+            color: var(--pure-white);
+            border-radius: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .store-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .store-btn svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .store-btn-text {
+            text-align: left;
+        }
+
+        .store-btn-small {
+            font-size: 10px;
+            color: var(--gray-light);
+            line-height: 1;
+        }
+
+        .store-btn-big {
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .cta-note {
+            font-size: 13px;
+            color: var(--gray-light);
+        }
+
+        /* ===== BLOG LINK ===== */
+        .blog-link-section {
+            text-align: center;
+            padding: 60px 24px;
+            background: var(--section-bg);
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .blog-link-card {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 32px;
+            background: var(--pure-white);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--black);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .blog-link-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .blog-link-icon {
+            width: 44px;
+            height: 44px;
+            background: #03c75a;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .blog-link-text h4 {
+            font-size: 15px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .blog-link-text p {
+            font-size: 12px;
+            color: var(--gray);
+            text-align: left;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--section-bg);
+            padding: 20px 24px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--black);
+        }
+
+        footer p {
+            font-size: 12px;
+            color: var(--gray-light);
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+        .reveal-delay-6 { transition-delay: 0.6s; }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            nav { height: 44px; }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 80px 20px;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            .phone-frame {
+                width: 240px;
+                height: 480px;
+            }
+
+            .stats-row {
+                gap: 32px;
+            }
+
+            .steps::before {
+                left: 20px;
+            }
+
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .compare-cell {
+                padding: 12px 10px;
+                font-size: 12px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="#" class="nav-logo">톨<span>리스트</span></a>
+            <ul class="nav-links">
+                <li><a href="#features">기능</a></li>
+                <li><a href="#how">사용법</a></li>
+                <li><a href="#reviews">후기</a></li>
+                <li><a href="#download" class="nav-cta">다운로드</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <p class="hero-eyebrow">할 일 관리의 새로운 기준</p>
+        <h1>
+            해야 할 일을<br>
+            <span class="gradient-text">완벽하게 해내는 힘.</span>
+        </h1>
+        <p class="hero-subtitle">
+            매일 쏟아지는 할 일 속에서 정말 중요한 것에만 집중하세요.<br>
+            톨리스트가 당신의 하루를 설계합니다.
+        </p>
+        <div class="hero-buttons">
+            <a href="https://play.google.com/store/apps/details?id=com.tallest.app" target="_blank" class="btn-primary">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.608 1.51a.999.999 0 0 1 0 1.764l-2.608 1.509-2.532-2.537 2.532-2.246zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+                무료 다운로드
+            </a>
+            <a href="#features" class="btn-secondary">
+                더 알아보기
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+
+        <!-- Phone Mockup -->
+        <div class="hero-phone">
+            <div class="phone-frame">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen-content">
+                        <p class="screen-greeting">2월 7일 금요일</p>
+                        <p class="screen-title">오늘의 할 일</p>
+                        <div class="screen-progress">
+                            <p class="screen-progress-label">오늘 달성률</p>
+                            <div class="screen-progress-bar">
+                                <div class="screen-progress-fill" id="progressFill"></div>
+                            </div>
+                            <p class="screen-progress-percent" id="progressPercent">0%</p>
+                        </div>
+                        <div class="screen-tasks">
+                            <div class="screen-task done">
+                                <span class="task-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
+                                </span>
+                                기획서 제출
+                                <span class="task-tag tag-work">업무</span>
+                            </div>
+                            <div class="screen-task done">
+                                <span class="task-check">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
+                                </span>
+                                30분 운동
+                                <span class="task-tag tag-health">건강</span>
+                            </div>
+                            <div class="screen-task">
+                                <span class="task-check"></span>
+                                독서 20페이지
+                                <span class="task-tag tag-self">자기계발</span>
+                            </div>
+                            <div class="screen-task">
+                                <span class="task-check"></span>
+                                팀 미팅 준비
+                                <span class="task-tag tag-work">업무</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Point Section -->
+    <section class="pain">
+        <div class="section-center">
+            <p class="section-eyebrow reveal" style="color: var(--gray-light);">왜 톨리스트인가요?</p>
+            <h2 class="section-title reveal">
+                혹시, 이런 경험<br>있지 않으신가요?
+            </h2>
+            <p class="section-subtitle reveal">
+                대부분의 사람들은 하루의 40%를 비효율적으로 보냅니다.<br>
+                당신만 그런 게 아닙니다.
+            </p>
+        </div>
+        <div class="pain-cards">
+            <div class="pain-card reveal reveal-delay-1">
+                <span class="pain-icon">&#x1F635;&#x200D;&#x1F4AB;</span>
+                <h3>할 일이 너무 많아서 뭐부터 해야 할지 모르겠다</h3>
+                <p>머릿속이 복잡하면 아무것도 하기 싫어집니다. 정리되지 않은 할 일은 당신의 에너지를 빼앗습니다.</p>
+            </div>
+            <div class="pain-card reveal reveal-delay-2">
+                <span class="pain-icon">&#x1F614;</span>
+                <h3>하루가 끝나면 '오늘 뭐 했지?' 싶다</h3>
+                <p>바쁘게 보냈는데 성과가 없는 느낌. 그건 바쁜 게 아니라 방향 없이 움직인 겁니다.</p>
+            </div>
+            <div class="pain-card reveal reveal-delay-3">
+                <span class="pain-icon">&#x1F4F1;</span>
+                <h3>다른 앱은 너무 복잡하거나 오래 못 썼다</h3>
+                <p>기능이 많다고 좋은 게 아닙니다. 결국 쓰지 않는 앱은 의미가 없습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-center">
+            <p class="section-eyebrow reveal">핵심 기능</p>
+            <h2 class="section-title reveal">
+                단순하지만,<br>강력합니다.
+            </h2>
+            <p class="section-subtitle reveal">
+                톨리스트는 불필요한 것을 모두 걷어냈습니다.<br>
+                오직 '실행'에만 집중할 수 있도록.
+            </p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card reveal reveal-delay-1">
+                <div class="feature-icon icon-blue">&#x26A1;</div>
+                <h3>3초 만에 할 일 추가</h3>
+                <p>복잡한 설정 없이 열자마자 바로 입력. 떠오른 순간 놓치지 마세요. 생각의 속도로 기록합니다.</p>
+            </div>
+            <div class="feature-card reveal reveal-delay-2">
+                <div class="feature-icon icon-purple">&#x1F3AF;</div>
+                <h3>오늘에 집중하는 뷰</h3>
+                <p>오늘 해야 할 것만 딱 보여줍니다. 내일 걱정은 내일의 나에게. 지금 이 순간에 집중하세요.</p>
+            </div>
+            <div class="feature-card reveal reveal-delay-3">
+                <div class="feature-icon icon-green">&#x1F4CA;</div>
+                <h3>달성률 시각화</h3>
+                <p>프로그레스 바로 오늘의 성취를 한눈에. 작은 성취감이 쌓여 큰 변화를 만듭니다.</p>
+            </div>
+            <div class="feature-card reveal reveal-delay-4">
+                <div class="feature-icon icon-orange">&#x1F516;</div>
+                <h3>카테고리 분류</h3>
+                <p>업무, 건강, 자기계발 등 영역별로 깔끔하게 정리. 삶의 균형을 한눈에 파악하세요.</p>
+            </div>
+            <div class="feature-card reveal reveal-delay-5">
+                <div class="feature-icon icon-pink">&#x1F514;</div>
+                <h3>스마트 알림</h3>
+                <p>중요한 할 일을 놓치지 않도록 딱 필요한 순간에 알려드립니다. 당신의 리듬에 맞춰서.</p>
+            </div>
+            <div class="feature-card reveal reveal-delay-6">
+                <div class="feature-icon icon-teal">&#x2601;&#xFE0F;</div>
+                <h3>심플한 디자인</h3>
+                <p>미니멀하고 직관적인 인터페이스. 처음 쓰는 사람도 설명서 없이 바로 사용할 수 있습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how">
+        <div class="section-center">
+            <p class="section-eyebrow reveal" style="color: var(--green);">시작하기</p>
+            <h2 class="section-title reveal">
+                시작은 단 30초.
+            </h2>
+            <p class="section-subtitle reveal">
+                복잡한 회원가입도, 긴 튜토리얼도 없습니다.
+            </p>
+        </div>
+        <div class="steps">
+            <div class="step reveal reveal-delay-1">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>다운로드하고 실행하세요</h3>
+                    <p>Google Play에서 무료로 다운로드. 앱을 열면 바로 시작할 수 있습니다. 가입 과정이 필요 없습니다.</p>
+                </div>
+            </div>
+            <div class="step reveal reveal-delay-2">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>오늘 할 일을 적어보세요</h3>
+                    <p>가장 중요한 일 3가지부터 시작해보세요. 적는 순간, 머릿속이 정리되는 걸 느낄 수 있습니다.</p>
+                </div>
+            </div>
+            <div class="step reveal reveal-delay-3">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>하나씩 체크하며 성장하세요</h3>
+                    <p>완료할 때마다 달성률이 올라갑니다. 이 작은 성취감이 내일도 움직이게 만드는 힘이 됩니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Psychology Section -->
+    <section class="psychology">
+        <div class="section-center">
+            <p class="section-eyebrow reveal">과학적 근거</p>
+            <h2 class="section-title reveal">
+                왜 적어야<br>실행할 수 있을까?
+            </h2>
+            <p class="section-subtitle reveal">
+                심리학 연구가 증명합니다.<br>기록하는 사람이 더 많이 해냅니다.
+            </p>
+        </div>
+        <div class="psych-grid">
+            <div class="psych-item reveal reveal-delay-1">
+                <p class="psych-number">42%</p>
+                <h3>목표 달성률 향상</h3>
+                <p>할 일을 적는 것만으로 실행 확률이 42% 증가합니다. (도미니칸 대학 연구)</p>
+            </div>
+            <div class="psych-item reveal reveal-delay-2">
+                <p class="psych-number">91%</p>
+                <h3>기록 습관의 힘</h3>
+                <p>성공한 사람들의 91%가 매일 할 일 목록을 작성하는 습관을 가지고 있습니다.</p>
+            </div>
+            <div class="psych-item reveal reveal-delay-3">
+                <p class="psych-number">2.5x</p>
+                <h3>생산성 향상</h3>
+                <p>체계적으로 할 일을 관리하는 사람은 그렇지 않은 사람보다 생산성이 2.5배 높습니다.</p>
+            </div>
+            <div class="psych-item reveal reveal-delay-4">
+                <p class="psych-number">73%</p>
+                <h3>스트레스 감소</h3>
+                <p>머릿속 할 일을 외부에 기록하면 인지 부하가 줄어 스트레스가 73% 감소합니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof" id="reviews">
+        <div class="section-center">
+            <p class="section-eyebrow reveal" style="color: var(--gray-light);">사용자 후기</p>
+            <h2 class="section-title reveal">
+                이미 많은 분들이<br>변화를 경험했습니다.
+            </h2>
+            <div class="stats-row reveal">
+                <div class="stat">
+                    <p class="stat-number" data-target="50000">0</p>
+                    <p class="stat-label">다운로드</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-number" data-target="4.8" data-decimal="true">0</p>
+                    <p class="stat-label">평균 평점</p>
+                </div>
+                <div class="stat">
+                    <p class="stat-number" data-target="92" data-suffix="%">0</p>
+                    <p class="stat-label">재사용률</p>
+                </div>
+            </div>
+        </div>
+        <div class="testimonials">
+            <div class="testimonial reveal reveal-delay-1">
+                <p class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+                <p>"복잡한 앱들 다 지우고 이것만 씁니다. 진짜 심플한데 이게 핵심이더라고요. 할 일 적고, 체크하고, 끝."</p>
+                <p class="testimonial-author">김지현 / 직장인</p>
+            </div>
+            <div class="testimonial reveal reveal-delay-2">
+                <p class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+                <p>"달성률 보는 재미가 있어요. 100% 채우고 싶은 마음에 자연스럽게 할 일을 하게 됩니다. 제 인생 앱이에요."</p>
+                <p class="testimonial-author">박준영 / 대학생</p>
+            </div>
+            <div class="testimonial reveal reveal-delay-3">
+                <p class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+                <p>"아이들 학원 스케줄부터 장보기까지 전부 관리해요. 머릿속이 비워지니까 진짜 여유가 생기더라고요."</p>
+                <p class="testimonial-author">이수연 / 워킹맘</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compare -->
+    <section class="compare">
+        <div class="section-center">
+            <p class="section-eyebrow reveal" style="color: var(--orange);">비교</p>
+            <h2 class="section-title reveal">
+                다른 앱과<br>무엇이 다른가요?
+            </h2>
+            <p class="section-subtitle reveal">
+                기능이 많은 게 아니라, 쓸 수 있는 게 좋은 겁니다.
+            </p>
+        </div>
+        <div class="compare-table reveal">
+            <div class="compare-row compare-header">
+                <div class="compare-cell">기능</div>
+                <div class="compare-cell">타 앱</div>
+                <div class="compare-cell">톨리스트</div>
+            </div>
+            <div class="compare-row">
+                <div class="compare-cell">3초 만에 할 일 추가</div>
+                <div class="compare-cell"><span class="cross">&#x2715;</span></div>
+                <div class="compare-cell"><span class="check">&#x2713;</span></div>
+            </div>
+            <div class="compare-row">
+                <div class="compare-cell">직관적 인터페이스</div>
+                <div class="compare-cell"><span class="cross">&#x2715;</span></div>
+                <div class="compare-cell"><span class="check">&#x2713;</span></div>
+            </div>
+            <div class="compare-row">
+                <div class="compare-cell">달성률 시각화</div>
+                <div class="compare-cell"><span class="cross">&#x2715;</span></div>
+                <div class="compare-cell"><span class="check">&#x2713;</span></div>
+            </div>
+            <div class="compare-row">
+                <div class="compare-cell">가입 없이 즉시 시작</div>
+                <div class="compare-cell"><span class="cross">&#x2715;</span></div>
+                <div class="compare-cell"><span class="check">&#x2713;</span></div>
+            </div>
+            <div class="compare-row">
+                <div class="compare-cell">완전 무료</div>
+                <div class="compare-cell"><span class="cross">&#x2715;</span></div>
+                <div class="compare-cell"><span class="check">&#x2713;</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="download">
+        <div class="section-center">
+            <h2 class="section-title reveal">
+                내일의 나를 위해,<br>
+                <span class="gradient-text">오늘 시작하세요.</span>
+            </h2>
+            <p class="cta-subtitle reveal">
+                30초면 충분합니다.<br>
+                지금 다운로드하고, 달라진 내일을 만나보세요.
+            </p>
+            <div class="cta-buttons reveal">
+                <a href="https://play.google.com/store/apps/details?id=com.tallest.app" target="_blank" class="store-btn">
+                    <svg viewBox="0 0 24 24" fill="white"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.608 1.51a.999.999 0 0 1 0 1.764l-2.608 1.509-2.532-2.537 2.532-2.246zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/></svg>
+                    <div class="store-btn-text">
+                        <span class="store-btn-small">Google Play에서</span>
+                        <span class="store-btn-big">다운로드</span>
+                    </div>
+                </a>
+            </div>
+            <p class="cta-note reveal">무료 다운로드 &middot; 가입 필요 없음 &middot; 광고 최소화</p>
+        </div>
+    </section>
+
+    <!-- Blog Link -->
+    <div class="blog-link-section">
+        <a href="https://blog.naver.com/fun-coding/224027228066" target="_blank" class="blog-link-card reveal">
+            <div class="blog-link-icon">N</div>
+            <div class="blog-link-text">
+                <h4>톨리스트 공식 블로그 보러가기</h4>
+                <p>더 자세한 사용법과 업데이트 소식을 확인하세요</p>
+            </div>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#86868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2M17 17V8H8"/></svg>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="https://play.google.com/store/apps/details?id=com.tallest.app" target="_blank">Google Play</a>
+            <a href="https://blog.naver.com/fun-coding/224027228066" target="_blank">공식 블로그</a>
+        </div>
+        <p>&copy; 2026 톨리스트(Tallest). All rights reserved.</p>
+    </footer>
+
+    <script>
+        // ===== Scroll Reveal =====
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ===== Progress Bar Animation =====
+        const progressFill = document.getElementById('progressFill');
+        const progressPercent = document.getElementById('progressPercent');
+
+        setTimeout(() => {
+            progressFill.classList.add('animate');
+            animateValue(progressPercent, 0, 72, 1500);
+        }, 1200);
+
+        function animateValue(el, start, end, duration) {
+            const startTime = performance.now();
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(start + (end - start) * eased);
+                el.textContent = current + '%';
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        // ===== Stat Counter Animation =====
+        const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseFloat(el.dataset.target);
+                    const isDecimal = el.dataset.decimal === 'true';
+                    const suffix = el.dataset.suffix || '';
+                    const duration = 2000;
+                    const startTime = performance.now();
+
+                    function update(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        let current = eased * target;
+
+                        if (isDecimal) {
+                            el.textContent = current.toFixed(1) + suffix;
+                        } else if (target >= 1000) {
+                            el.textContent = Math.round(current).toLocaleString() + '+' + suffix;
+                        } else {
+                            el.textContent = Math.round(current) + suffix;
+                        }
+
+                        if (progress < 1) requestAnimationFrame(update);
+                    }
+
+                    requestAnimationFrame(update);
+                    statObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(el => statObserver.observe(el));
+
+        // ===== Smooth Scroll =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ===== Nav Background on Scroll =====
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                nav.style.background = 'rgba(251, 251, 253, 0.92)';
+            } else {
+                nav.style.background = 'rgba(251, 251, 253, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>
