@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:m.blog.naver.com)",
+      "WebFetch(domain:play.google.com)",
+      "WebFetch(domain:webcache.googleusercontent.com)"
+    ]
+  }
+}
